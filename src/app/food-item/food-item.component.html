@@ -1,0 +1,38 @@
+<!-- <div class="row">
+  <div class="col-lg-3 col-sm-6 p-1">
+    <div class="card text-white bg-warning" style="width: 18rem;">
+      <img class="card-img-top" src="../../assets/images/food1.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Yummy Burger</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-sm-6 p-1">
+    <div class="card text-white bg-warning" [ngStyle]="{'width': '18rem'}">
+      <img class="card-img-top" [src]="foodItems[0].imageUrl" alt="Card image cap">
+      <div [ngClass]="{'card-body': true}">
+        <p class="card-text">{{foodItems[0].Description}}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-lg-3 col-sm-6 p-1" *ngFor='let food of foodItems'>
+    <div class="card text-white bg-warning" style="width: 18rem;">
+      <img class="card-img-top" style="height: 200px;" [src]="food.imageUrl" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">{{food.Description}}</p>
+        <div class="text-right">
+          <div class="row">
+            <div class="col">
+              <app-special-button></app-special-button>
+            </div>
+            <div class="col">
+              <button type="button" (click)="AddItemToCart(food)" class="btn btn-md btn-success">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
