@@ -9,6 +9,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CartService } from './cart.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { MenuService } from './menu.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [CartService],
+  providers: [CartService, MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+import { MenuService } from '../menu.service';
 
 @Component({
   selector: 'app-food-item',
@@ -8,57 +9,62 @@ import { CartService } from '../cart.service';
 })
 export class FoodItemComponent implements OnInit {
   selectedFoodItems = [];
-  foodItems = [
-    {
-      id: 1,
-      name: 'Burger',
-      Description: 'Tasty burger with fries',
-      imageUrl: '../../assets/images/food1.jpg'
-    },
-    {
-      id: 2,
-      name: 'Salad',
-      Description: 'Healthy Salad',
-      imageUrl: '../../assets/images/food2.jpg'
-    },
-    {
-      id: 3,
-      name: 'Meat',
-      Description: 'Smoked Meat',
-      imageUrl: '../../assets/images/food3.jpg'
-    },
-    {
-      id: 4,
-      name: 'Large Burger',
-      Description: 'Large Burger',
-      imageUrl: '../../assets/images/food4.jpg'
-    },
-    {
-      id: 5,
-      name: 'Roll',
-      Description: 'Chicken Roll',
-      imageUrl: '../../assets/images/food5.jpg'
-    },
-    {
-      id: 6,
-      name: 'Samosa',
-      Description: 'Samosa',
-      imageUrl: '../../assets/images/food6.jpg'
-    },
-    {
-      id: 7,
-      name: 'Cake',
-      Description: 'Sweet Cake',
-      imageUrl: '../../assets/images/food7.jpg'
-    },
-    {
-      id: 8,
-      name: 'Pasta',
-      Description: 'Tasty Pasta',
-      imageUrl: '../../assets/images/food8.jpg'
-    }
-  ];
-  constructor(private cartService: CartService) { }
+  foodItems = [];
+  // foodItems = [
+  //   {
+  //     id: 1,
+  //     name: 'Burger',
+  //     Description: 'Tasty burger with fries',
+  //     imageUrl: '../../assets/images/food1.jpg'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Salad',
+  //     Description: 'Healthy Salad',
+  //     imageUrl: '../../assets/images/food2.jpg'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Meat',
+  //     Description: 'Smoked Meat',
+  //     imageUrl: '../../assets/images/food3.jpg'
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'Large Burger',
+  //     Description: 'Large Burger',
+  //     imageUrl: '../../assets/images/food4.jpg'
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'Roll',
+  //     Description: 'Chicken Roll',
+  //     imageUrl: '../../assets/images/food5.jpg'
+  //   },
+  //   {
+  //     id: 6,
+  //     name: 'Samosa',
+  //     Description: 'Samosa',
+  //     imageUrl: '../../assets/images/food6.jpg'
+  //   },
+  //   {
+  //     id: 7,
+  //     name: 'Cake',
+  //     Description: 'Sweet Cake',
+  //     imageUrl: '../../assets/images/food7.jpg'
+  //   },
+  //   {
+  //     id: 8,
+  //     name: 'Pasta',
+  //     Description: 'Tasty Pasta',
+  //     imageUrl: '../../assets/images/food8.jpg'
+  //   }
+  // ];
+  constructor(private cartService: CartService, private menuService: MenuService) {
+    this.menuService.getMenu().subscribe(items => {
+      this.foodItems = items;
+    });
+   }
 
   ngOnInit() {
     this.cartService.selectedItems.subscribe(selectedItems => {
